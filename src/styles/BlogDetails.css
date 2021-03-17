@@ -1,0 +1,96 @@
+.blogDetails{
+    position: relative;
+}
+.blogDetails__thumbnail img{
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    max-height: 60vh;
+    object-fit: cover;
+}
+.blogDetails__header{
+    background: #fff;
+    box-shadow: 0px 10px 29px rgba(214, 214, 214, 0.26);
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    padding: 40px;
+    width: 50%;
+    max-width: 840px;
+    margin: 0 auto;
+    transform: translateY(-50%);
+    z-index: 88;
+    position: relative;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+.blogDetails__header > h1{
+    font-size: 40px;
+    padding: 10px 0px;
+    padding-top: 15px;
+    color: var(--primary-color);
+}
+.blogDetails__header > p{
+    font-size: 16px;
+    padding: 20px 0;
+    color: var(--gray-color);
+    line-height: 19px;
+    padding-bottom: 30px;
+    padding-top: 10px;
+}
+.blogDetails__metadata{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.blogDetails__author_wrapper{
+    display: flex;
+    align-items: center;
+}
+.blogDetails__author_wrapper img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    margin-right: 10px;
+}
+.blogDetails__author_data h4{
+    font-size: 17px;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+}
+.upload_date{
+    font-size: 14px;
+    color: var(--primary-color);
+}
+.blogDetails__categorys{
+    width: fit-content;
+}
+.blogDetails__categorys a{
+    background: #eeeeee;
+    padding: 12px 17px;
+    border-radius: 10px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: .9em;
+    margin: 5px 7px;
+}
+.blogDetails__categorys a:nth-last-child(){
+    margin-right: 0;
+}
