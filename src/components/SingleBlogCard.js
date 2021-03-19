@@ -17,7 +17,7 @@ function SingleBlogCard({blog}) {
                     <a href="#">{blog.categorys[0]}</a>
                 </div>
                 <h2>{blog?.title}</h2>
-                <p>{textShortaner(blog?.shortDescription, 125)}</p>
+                <p>{textShortaner(blog?.shortDescription, 90)}</p>
             </Link>
         </div>
     )

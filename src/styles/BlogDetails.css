@@ -193,6 +193,10 @@
     -o-border-radius: 20px;
     box-shadow: 0px 10px 29px rgba(214, 214, 214, 0.26);
     margin: 10px auto;
+    width: auto;
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
 }
 
 .blogDetails__content iframe {
@@ -332,6 +336,9 @@ table tr:nth-child(1) > td{
     line-height: 65px;
     height: 30px;
     letter-spacing: 0.2em;
+}
+.inline-code {
+    font-weight: 600 !important;
 }
 @media (max-width: 940px){
     .blogDetails__header {
