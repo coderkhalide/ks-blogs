@@ -30,13 +30,11 @@ function JoinScreen() {
                 signupBtn.parentNode.classList.add('slide-up')
                 parent.classList.remove('slide-up')
             }
-            return true
         });
     }
 
     const handleSignupOpen = (e) => {
         const loginBtn = document.getElementById('login');
-
         let parent = e.target.parentNode;
         Array.from(e.target.parentNode.classList).find((element) => {
             if (element !== "slide-up") {
@@ -45,7 +43,6 @@ function JoinScreen() {
                 loginBtn.parentNode.parentNode.classList.add('slide-up')
                 parent.classList.remove('slide-up')
             }
-            return true
         });
     }
 
