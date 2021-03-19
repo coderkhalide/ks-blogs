@@ -13,8 +13,8 @@ function Navbar() {
                 <div className="navbar__menus">
                     <ul>
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/blog">Create Blog</Link></li>
-                        <li className="navbar__join"><Link to="/">Join</Link></li>
+                        <li><Link to="/create">Create Blog</Link></li>
+                        <li className="navbar__join"><Link to="/join">Join</Link></li>
                     </ul>
                 </div>
             </div>

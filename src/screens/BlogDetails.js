@@ -11,7 +11,7 @@ function BlogDetails() {
 
     console.log(id)
 
-    const blog = (blogs.filter(v => v.id == Number(id)))[0]
+    const blog = (blogs.filter(v => v.id === Number(id)))[0]
     console.log(blog)
     if(blog){
         return (
@@ -33,9 +33,9 @@ function BlogDetails() {
                             </div>
                         </div>
                         <div className="blogDetails__categorys">
-                            {/* {blog && blog.categorys.map(category => (
+                            {blog && blog.categorys.map(category => (
                                 <a  href="#">{category}</a>
-                            ))} */}
+                            ))}
                         </div>
                     </div>
                     <div className="blogDetails__content"></div>
