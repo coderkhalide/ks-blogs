@@ -36,14 +36,18 @@
 	 position: absolute;
 	 top: 50%;
 	 left: 50%;
-	 -webkit-transform: translate(-50%, -50%);
+	 transform: translate(-50%, -50%);
 	 width: 65%;
 	 z-index: 5;
 	 transition: all 0.3s ease;
-     -webkit-transition: all 0.3s ease;
-     -moz-transition: all 0.3s ease;
-     -ms-transition: all 0.3s ease;
-     -o-transition: all 0.3s ease;
+	 -webkit-transition: all 0.3s ease;
+	 -moz-transition: all 0.3s ease;
+	 -ms-transition: all 0.3s ease;
+	 -o-transition: all 0.3s ease;
+	 -webkit-transform: translate(-50%, -50%);
+	 -moz-transform: translate(-50%, -50%);
+	 -ms-transform: translate(-50%, -50%);
+	 -o-transform: translate(-50%, -50%);
 }
  .form-structor .signup.slide-up {
 	 top: 5%;
