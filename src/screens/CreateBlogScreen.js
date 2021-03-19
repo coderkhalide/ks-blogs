@@ -32,7 +32,7 @@ function CreateBlogScreen() {
     useEffect(() => {
         if(title && thumbnail && categorys.length > 0 && editor) setDisabled(false)
         else setDisabled(true)
-    })
+    }, [title, thumbnail, categorys, editor])
 
     console.log(blogData)
 

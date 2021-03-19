@@ -34,7 +34,7 @@ function BlogDetails() {
                         </div>
                         <div className="blogDetails__categorys">
                             {blog && blog.categorys.map(category => (
-                                <a  href="#">{category}</a>
+                                <a href="#">{category}</a>
                             ))}
                         </div>
                     </div>
