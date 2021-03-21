@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import "../styles/SingleBlogCard.css"
-function SingleBlogCard({blog}) {
 
+function SingleBlogCard({blog}) {
+    const [shortDescription, setShortDescription] = useState('')
     const textShortaner = (text, lenght) => {
         if(text.length > lenght){
             let short = text.slice(0, lenght) + ' ...'
@@ -9,15 +11,37 @@ function SingleBlogCard({blog}) {
         }else return text
     }
 
+    useEffect(() => {
+        let text = ''
+        blog?.blocks.forEach(block => {
+            if(block.type === 'paragraph'){
+                if(text.length < 100){
+                    if(!text){
+                        text = block.data.text
+                    }else{
+                        text += ' ' + block.data.text
+                    }
+                }
+            }
+        })
+        setShortDescription(text)
+    }, [blog?.blocks])
+
     return (
         <div className="singleBlogCard">
-            <Link to={'/blog/' + blog.id} className="singleBlogCard__wrapper">
+            <Link to={{
+                pathname: '/blog/' + blog._id,
+                state: { blog: blog }
+            }} className="singleBlogCard__wrapper">
                 <img src={blog?.thumbnail} alt=""/>
                 <div className="singleBlogCard__categorys">
-                    <a href="#">{blog.categorys[0]}</a>
+                    <Link to={{
+                        pathname: '/blog/' + blog._id,
+                        state: { blog: blog }
+                    }}>{blog.categorys[0]}</Link>
                 </div>
                 <h2>{blog?.title}</h2>
-                <p>{textShortaner(blog?.shortDescription, 90)}</p>
+                <p>{textShortaner(shortDescription, 90)}</p>
             </Link>
         </div>
     )

@@ -38,3 +38,46 @@
     -ms-border-radius: 7px;
     -o-border-radius: 7px;
 }
+.mobileMenu{
+    display: none;
+}
+@media (max-width: 768px) {
+    .mobileMenu{
+        display: block;
+        width: 35px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+    .navbar__ul{
+        display: flex !important;
+        background: #ddd;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 999;
+        height: 100vh;
+        padding: 20px;
+        width: 55%;
+        flex-direction: column;
+        min-width: 350px;
+    }
+    .navbar__backdrop{
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 99;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.568);
+    }
+    .hidden{
+        display: none !important;
+    }
+    .navbar__menus > ul li {
+        padding: 15px 0;
+        text-align: center;
+    }
+    .navbar__menus > ul li > a {
+        display: block;
+    }
+}

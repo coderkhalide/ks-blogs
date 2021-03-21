@@ -5,8 +5,12 @@ import { useEffect, useState } from 'react'
 import { EDITOR_JS_TOOLS } from '../config/editorConstants'
 import { Button } from '@material-ui/core'
 import TagsInput from '../components/TagsInput'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../features/userSlice'
+import { useHistory } from 'react-router'
 
 function CreateBlogScreen() {
+
     const [blogData, setBlogData] = useState(null)
     const [editor, setEditor] = useState()
     const [title, setTitle] = useState('')
@@ -14,9 +18,41 @@ function CreateBlogScreen() {
     const [categorys, setCategorys] = useState([])
     const [disabled, setDisabled] = useState(true)
 
+    const user = useSelector(selectUser)
+    const history = useHistory()
+    if(!user) history.push('/join')
+
     const saveData = async () => {
         const outputData = await editor.save()
         setBlogData(outputData)
+        const values = {
+            title: title,
+            categorys: categorys,
+            thumbnail: thumbnail,
+            blocks: outputData.blocks,
+            user: user.id
+        }
+        try{
+            const data = await fetch('https://ks-blogs.herokuapp.com/blogs', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-auth-token": user.token
+                },
+                body: JSON.stringify(values)
+            })
+            const jsondata = await data.json()
+            if(!data.ok) {
+                alert(jsondata.message)
+            }
+            else{
+                console.log(jsondata)
+                history.push({
+                    pathname: '/blog/' + jsondata._id,
+                    state: {blog: jsondata}
+                })
+            }
+        }catch(e){console.log(e)}
     }
 
     const handleSelecetedTags = (items) => {
@@ -26,15 +62,12 @@ function CreateBlogScreen() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         saveData()
-        console.log(title, thumbnail, categorys)
     }
 
     useEffect(() => {
         if(title && thumbnail && categorys.length > 0 && editor) setDisabled(false)
         else setDisabled(true)
     }, [title, thumbnail, categorys, editor])
-
-    console.log(blogData)
 
     return (
         <>

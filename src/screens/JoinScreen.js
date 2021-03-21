@@ -2,8 +2,18 @@ import Navbar from '../components/Navbar'
 import "../styles/JoinScreen.css"
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, selectUser } from '../features/userSlice';
+import { useHistory } from 'react-router';
 
 function JoinScreen() {
+
+    const user = useSelector(selectUser)
+    const history = useHistory()
+    if(user) history.push('/')
+    console.log(user)
+
+    const dispatch = useDispatch()
 
     const SignupSchema = Yup.object().shape({
         name: Yup.string()
@@ -25,10 +35,10 @@ function JoinScreen() {
         let parent = e.target.parentNode.parentNode;
         Array.from(e.target.parentNode.parentNode.classList).find((element) => {
             if (element !== "slide-up") {
-                parent.classList.add('slide-up')
+                return parent.classList.add('slide-up')
             } else {
                 signupBtn.parentNode.classList.add('slide-up')
-                parent.classList.remove('slide-up')
+                return parent.classList.remove('slide-up')
             }
         });
     }
@@ -44,6 +54,55 @@ function JoinScreen() {
                 parent.classList.remove('slide-up')
             }
         });
+    }
+
+    const handleLogin = async (values) => {
+        try{
+            const data = await fetch('https://ks-blogs.herokuapp.com/auth', {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(values)
+            })
+            const jsondata = await data.json()
+            if(!data.ok) {
+                alert(jsondata.message)
+            }
+            else{
+                console.log(jsondata)
+                dispatch(login({
+                    id: jsondata.id,
+                    name: jsondata.name,
+                    email: jsondata.email,
+                    token: jsondata.token,
+                    avatar: jsondata.avatar,
+                }))
+                console.log(user)
+            }
+        }catch(e){console.log(e)}
+    }
+
+    const handleSignup = async (values) => {
+        try{
+            const data = await fetch('https://ks-blogs.herokuapp.com/users', {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(values)
+            })
+            const jsondata = await data.json()
+            if(!data.ok) {
+                alert(jsondata.message)
+            }
+            else{
+                console.log(jsondata)
+                dispatch(login({
+                    id: jsondata.id,
+                    name: jsondata.name,
+                    email: jsondata.email,
+                    token: jsondata.token,
+                    avatar: jsondata.avatar,
+                }))
+            }
+        }catch(e){console.log(e)}
     }
 
     return (
@@ -64,10 +123,7 @@ function JoinScreen() {
                                         password: '',
                                     }}
                                     validationSchema={SignupSchema}
-                                    onSubmit={values => {
-                                        // same shape as initial values
-                                        console.log(values);
-                                    }}
+                                    onSubmit={handleSignup}
                                 >
                                     {({ errors, touched }) => (
                                         <Form>
@@ -90,10 +146,7 @@ function JoinScreen() {
                                             password: '',
                                         }}
                                         validationSchema={LoginSchema}
-                                        onSubmit={values => {
-                                            // same shape as initial values
-                                            console.log(values);
-                                        }}
+                                        onSubmit={handleLogin}
                                     >
                                         {({ errors, touched }) => (
                                             <Form>

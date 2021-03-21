@@ -9,6 +9,7 @@ import BlogDetails from './screens/BlogDetails';
 import HomeScreen from './screens/HomeScreen';
 import CreateBlogScreen from './screens/CreateBlogScreen';
 import JoinScreen from "./screens/JoinScreen";
+import NotFound from "./screens/NotFound";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/" >
             <HomeScreen />
           </Route>
+          <Route component={NotFound} /> 
         </Switch>
     </Router>
   );

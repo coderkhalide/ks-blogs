@@ -5,8 +5,11 @@
     --gray-color: #757575;
     --content-link: #060060;
 }
-
 .wrapper{
     max-width: 1280px;
+    margin: 0 auto;
+}
+.loading {
+    max-width: 700px;
     margin: 0 auto;
 }
